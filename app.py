@@ -35,7 +35,7 @@ def check_ident():
         return 'Content Type is not json', 400
     if not re.match('^\d{5}-\d{5} \d$', ident):
         return 'Invalid format', 400
-    positions = range(10, 1, -1)
+    positions = range(10, 0, -1)  # Тут правильнее использовать range(10, 0, -1), вместо range(10, 1, -1) иначе будет [10, 9, 8, 7, 6, 5, 4, 3, 2]
     pairs = zip(positions, [int(char) for char in ident.replace('-', '').replace(' ', '')])
     check_sum = sum([pow(value, 2, position) for position, value in pairs])
     if check_sum > 10:
