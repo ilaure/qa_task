@@ -14,9 +14,10 @@ def hello_world():
 @app.route('/minutes/<int:count>', methods=['GET'])
 def minutes(count):
     last_digit = count % 10
-    if last_digit == 1:
+    last_digit_100 = count % 100
+    if last_digit == 1 and last_digit_100 != 11:
         ending = 'минуту'
-    elif last_digit in range(2, 5):
+    elif last_digit in range(2, 5) and (last_digit_100 < 10 or last_digit_100 > 20):
         ending = 'минуты'
     else:
         ending = 'минут'
