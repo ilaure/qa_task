@@ -23,9 +23,10 @@ class TestBasicStatusCodes:
 
 
 class TestGetMinutes:
-    @pytest.mark.parametrize("count, ending", [('0', 'минут'), ('1', 'минуту'), ('11', 'минут'), ('2', 'минуты'),
-                                               ('4', 'минуты'), ('5', 'минут'), ('10', 'минут'), ('20', 'минут'),
-                                               ('33', 'минуты'), ('42', 'минуты'), ('1000', 'минут')])
+    @pytest.mark.parametrize("count, ending", [
+        ('0', 'минут'), ('1', 'минуту'), ('2', 'минуты'), ('4', 'минуты'), ('5', 'минут'), ('10', 'минут'),
+        ('11', 'минут'), ('12', 'минут'), ('13', 'минут'), ('14', 'минут'), ('20', 'минут'), ('21', 'минуту'),
+        ('33', 'минуты'), ('42', 'минуты'), ('1000', 'минут')])
     def test_get_response_minutes(self, app_url_minutes, count, ending):
         response = requests.get(app_url_minutes + count)
         assert response.text == f'Вы ввели: {count} {ending}'
